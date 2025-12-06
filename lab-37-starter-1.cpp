@@ -24,7 +24,7 @@ int main() {
     
     if (!inputFile){
         cout << "Error: Could not open file." << endl;
-        return 0;
+        return 1;
     }
 
     map<int, list<string>> hash_table;
@@ -32,12 +32,22 @@ int main() {
 
     while (inputFile >> code) {
         int index = gen_hash_index(code);
-        hash_table[index].pop_back(code);
+        hash_table[index].push_back(code);
     }
 
     inputFile.close();
 
-    cout << "Total ASCII sum: " << totalSum << endl;    
+    int count = 0;
+    for (auto &entry : hash_table) {
+        cout << "Index " << entry.first << ": ";
+        for (const auto &code : entry.second) {
+            cout << code << " ";
+        }
+        cout << endl;
+
+        count++;
+        if (count == 100) break;
+    }
  
     return 0;
 }
