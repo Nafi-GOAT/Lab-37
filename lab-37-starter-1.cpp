@@ -18,14 +18,22 @@ int sum_ascii(const string &s) {
 
 int main() {
 
-    string input;
+    ifstream inputFile ("lab-37-data-3.txt");
     
-    cout << "Enter a string: ";
-    getline(cin, input);
+    if (!inputFile){
+        cout << "Error: Could not open file." << endl;
+    }
+  
+    long long totalSum = 0;
+    string code;
 
-    int result = sum_ascii(input);
+    while (inputFile >> code) {
+        totalSum += sum_ascii(code);
+    }
 
-    cout << "The sum of ASCII values is: " << result << endl;
+    inputFile.close();
+
+    cout << "Total ASCII sum: " << totalSum << endl;    
  
     return 0;
 }
