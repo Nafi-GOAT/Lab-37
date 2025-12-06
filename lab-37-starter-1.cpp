@@ -5,9 +5,11 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <map>
+#include <list>
 using namespace std;
 
-int sum_ascii(const string &s) {
+int gen_hash_index(const string &s) {
     int total = 0;
     for (int i = 0; i < s.length(); i++) {
         total += (int)s[i];
@@ -22,13 +24,15 @@ int main() {
     
     if (!inputFile){
         cout << "Error: Could not open file." << endl;
+        return 0;
     }
-  
-    long long totalSum = 0;
+
+    map<int, list<string>> hash_table;
     string code;
 
     while (inputFile >> code) {
-        totalSum += sum_ascii(code);
+        int index = gen_hash_index(code);
+        hash_table[index].pop_back(code);
     }
 
     inputFile.close();
