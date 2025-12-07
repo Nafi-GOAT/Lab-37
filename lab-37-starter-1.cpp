@@ -1,5 +1,5 @@
 //
-// COMSC 210 || Lab 37 || Mehraj Hasan Nafi
+// COMSC 210 || Lab 38 || Mehraj Hasan Nafi
 // IDE used: Visual Studio Code
 //
 #include <iostream>
@@ -50,6 +50,35 @@ void search_index(const map<int, list<string>>& table) {
         cout << code << " ";
     }
     cout << endl;
+}
+
+void search_string(const map<int, list<string>>& table) {
+    string s;
+    cout << "Enter a string to search: ";
+    cin >> s;
+
+    int index = gen_hash_index(s);
+
+    cout << "Computed index = " << index << endl;
+
+    auto it = table.find(index);
+
+    if (it == table.end()) {
+        cout << "No codes found at this index." << endl;
+        return;
+    }
+
+    bool found = false;
+    for (const auto &code : it->second) {
+        if (code == s) {     
+            cout << "Found matching string: " << code << endl;
+            found = true;
+        }
+    }
+
+    if (!found) {
+        cout << "No exact match found at this index." << endl;
+    }
 }
 
 int main() {
