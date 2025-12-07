@@ -17,6 +17,22 @@ int gen_hash_index(const string &s) {
     return total;
 }
 
+void print_first_100(const map<int, list<string>>& table) {
+    int count = 0;
+    for (const auto &entry : table) {
+        cout << "Index " << entry.first << ": ";
+        
+        for (const auto &code : entry.second) {
+            cout << code << " ";
+        }
+        cout << endl;
+        count++;
+
+        if (count == 100) 
+        break;
+    }
+}
+
 
 int main() {
 
