@@ -53,18 +53,27 @@ int main() {
 
     inputFile.close();
 
-    int count = 0;
-    for (auto &entry : hash_table) {
-        cout << "Index " << entry.first << ": ";
-        for (const auto &code : entry.second) {
-            cout << code << " ";
-        }
-        cout << endl;
+    int choice;
 
-        count++;
-        if (count == 100) break;
-    }
- 
+    do {
+        cout << "Menu:\n";
+        cout << "1. Print first 100 entries of the hash table\n";
+        cout << "2. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                print_first_100(hash_table);
+                break;
+
+            case 2:
+                cout << "Exiting program." << endl;
+                break;
+            default:
+                cout << "Invalid choice. Please try again." << endl;
+        }
+    } while (choice != 2);
+
     return 0;
 }
-
