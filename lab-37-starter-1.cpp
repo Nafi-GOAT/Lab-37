@@ -33,6 +33,17 @@ void print_first_100(const map<int, list<string>>& table) {
     }
 }
 
+void search_index(const map<int, list<string>>& table) {
+    int index;
+    cout << "Enter index to search: ";
+    cin >> index;
+
+    auto it = table.find(index);
+
+    if (it == table.end()) {
+        cout << "Index not found in the hash table." << endl;
+        return;
+    }
 
 int main() {
 
