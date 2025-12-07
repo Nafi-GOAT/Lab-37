@@ -45,6 +45,13 @@ void search_index(const map<int, list<string>>& table) {
         return;
     }
 
+    cout << "Codes at index " << index << ": ";
+    for (const auto &code : it->second) {
+        cout << code << " ";
+    }
+    cout << endl;
+}
+
 int main() {
 
     ifstream inputFile ("lab-37-data-3.txt");
@@ -69,7 +76,8 @@ int main() {
     do {
         cout << "Menu:\n";
         cout << "1. Print first 100 entries of the hash table\n";
-        cout << "2. Exit\n";
+        cout << "2. Search for an index\n";
+        cout << "3. Exit\n";
         cout << "Enter your choice: ";
         cin >> choice;
 
@@ -77,14 +85,18 @@ int main() {
             case 1:
                 print_first_100(hash_table);
                 break;
-
+             
             case 2:
+                search_index(hash_table);
+                break;
+
+            case 3:
                 cout << "Exiting program." << endl;
                 break;
             default:
                 cout << "Invalid choice. Please try again." << endl;
         }
-    } while (choice != 2);
+    } while (choice != 3);
 
     return 0;
 }
