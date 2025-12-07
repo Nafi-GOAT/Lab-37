@@ -75,6 +75,17 @@ void search_string(const map<int, list<string>>& table) {
     cout << endl;
 }
 
+void count_total_codes(const map<int, list<string>>& table) {
+int total = 0;
+
+    for (const auto &entry : table) {
+        total += entry.second.size();  // number of strings in this bucket
+    }
+
+    cout << "Total number of codes in the hash table: " << total << endl;
+}
+
+
 int main() {
 
     ifstream inputFile ("lab-37-data-3.txt");
@@ -101,7 +112,8 @@ int main() {
         cout << "1. Print first 100 entries of the hash table\n";
         cout << "2. Search for an index\n";
         cout << "3. Search for a string\n";
-        cout << "4. Exit\n";
+        cout << "4. Count total number of codes\n";
+        cout << "5. Exit\n";
         cout << "Enter your choice: ";
         cin >> choice;
 
@@ -119,12 +131,16 @@ int main() {
             break;
 
             case 4:
+            count_total_codes(hash_table);
+            break;
+
+            case 5:
                 cout << "Exiting program." << endl;
                 break;
             default:
                 cout << "Invalid choice. Please try again." << endl;
         }
-    } while (choice != 4);
+    } while (choice != 5);
 
     return 0;
 }
