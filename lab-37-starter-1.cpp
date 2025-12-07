@@ -68,17 +68,11 @@ void search_string(const map<int, list<string>>& table) {
         return;
     }
 
-    bool found = false;
+    cout << "Codes at this index: ";
     for (const auto &code : it->second) {
-        if (code == s) {     
-            cout << "Found matching string: " << code << endl;
-            found = true;
-        }
+        cout << code << " ";
     }
-
-    if (!found) {
-        cout << "No exact match found at this index." << endl;
-    }
+    cout << endl;
 }
 
 int main() {
@@ -106,7 +100,8 @@ int main() {
         cout << "Menu:\n";
         cout << "1. Print first 100 entries of the hash table\n";
         cout << "2. Search for an index\n";
-        cout << "3. Exit\n";
+        cout << "3. Search for a string\n";
+        cout << "4. Exit\n";
         cout << "Enter your choice: ";
         cin >> choice;
 
@@ -120,12 +115,16 @@ int main() {
                 break;
 
             case 3:
+            search_string(hash_table);
+            break;
+
+            case 4:
                 cout << "Exiting program." << endl;
                 break;
             default:
                 cout << "Invalid choice. Please try again." << endl;
         }
-    } while (choice != 3);
+    } while (choice != 4);
 
     return 0;
 }
