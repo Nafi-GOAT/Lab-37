@@ -7,6 +7,7 @@
 #include <fstream>
 #include <map>
 #include <list>
+#include <algorithm>
 using namespace std;
 
 int gen_hash_index(const string &s) {
@@ -110,7 +111,7 @@ void modify_string(map<int, list<string>>& table) {
     cout << "Enter new string to replace it with: ";
     cin >> newStr;
 
-    list.erase(pos);
+    lst.erase(pos);
 
     int newIndex = gen_hash_index(newStr);
     table[newIndex].push_back(newStr);
@@ -146,7 +147,8 @@ int main() {
         cout << "2. Search for an index\n";
         cout << "3. Search for a string\n";
         cout << "4. Count total number of codes\n";
-        cout << "5. Exit\n";
+        cout << "5. Modify a string\n";
+        cout << "6. Exit\n";
         cout << "Enter your choice: ";
         cin >> choice;
 
@@ -168,12 +170,16 @@ int main() {
             break;
 
             case 5:
+            modify_string(hash_table);
+            break;
+
+            case 6:
                 cout << "Exiting program." << endl;
                 break;
             default:
                 cout << "Invalid choice. Please try again." << endl;
         }
-    } while (choice != 5);
+    } while (choice != 6);
 
     return 0;
 }
