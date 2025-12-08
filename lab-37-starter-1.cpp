@@ -119,6 +119,31 @@ void modify_string(map<int, list<string>>& table) {
     cout << "String successfully modified!" << endl;
 }
 
+void remove_string(map<int, list<string>>& table) {
+    string target;
+    cout << "Enter the string you want to remove: ";
+    cin >> target;
+
+    int index = gen_hash_index(target);
+
+    auto it = table.find(index);
+    if (it == table.end()) 
+        cout << "Index does not exist. String not found." << endl;
+        return;
+    
+
+    auto &lst = it->second;
+    auto pos = find(lst.begin(), lst.end(), target);
+
+    if (pos == lst.end()) {
+        cout << "String not found at this index." << endl;
+        return;
+    }
+
+    lst.erase(pos);
+    cout << "String removed successfully." << endl;
+}
+
 
 int main() {
 
@@ -148,7 +173,8 @@ int main() {
         cout << "3. Search for a string\n";
         cout << "4. Count total number of codes\n";
         cout << "5. Modify a string\n";
-        cout << "6. Exit\n";
+        cout << "6. Remove a string\n";
+        cout << "7. Exit\n";
         cout << "Enter your choice: ";
         cin >> choice;
 
@@ -174,12 +200,16 @@ int main() {
             break;
 
             case 6:
+            remove_string(hash_table);
+            break;
+
+            case 7:
                 cout << "Exiting program." << endl;
                 break;
             default:
                 cout << "Invalid choice. Please try again." << endl;
         }
-    } while (choice != 6);
+    } while (choice != 7);
 
     return 0;
 }
