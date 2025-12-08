@@ -85,6 +85,39 @@ int total = 0;
     cout << "Total number of codes in the hash table: " << total << endl;
 }
 
+void modify_string(map<int, list<string>>& table) {
+    string oldStr, newStr;
+
+    cout << "Enter the string you want to modify: ";
+    cin >> oldStr;
+
+    int oldIndex = gen_hash_index(oldStr);
+
+    auto it = table.find(oldIndex);
+    if (it == table.end()) {
+        cout << "String not found (index does not exist)." << endl;
+        return;
+    }
+
+    auto &lst = it->second;
+    auto pos = find(lst.begin(), lst.end(), oldStr);
+
+    if (pos == lst.end()) {
+        cout << "String NOT found at its index." << endl;
+        return;
+    }
+
+    cout << "Enter new string to replace it with: ";
+    cin >> newStr;
+
+    list.erase(pos);
+
+    int newIndex = gen_hash_index(newStr);
+    table[newIndex].push_back(newStr);
+
+    cout << "String successfully modified!" << endl;
+}
+
 
 int main() {
 
