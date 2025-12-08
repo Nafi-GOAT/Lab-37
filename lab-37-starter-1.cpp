@@ -127,10 +127,10 @@ void remove_string(map<int, list<string>>& table) {
     int index = gen_hash_index(target);
 
     auto it = table.find(index);
-    if (it == table.end()) 
+    if (it == table.end()) { 
         cout << "Index does not exist. String not found." << endl;
         return;
-    
+    }
 
     auto &lst = it->second;
     auto pos = find(lst.begin(), lst.end(), target);
